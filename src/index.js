@@ -5,16 +5,28 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 // классовый компонент
-class Heading extends React.Component {
-  render() {
-    const h1 = React.createElement(
-      'h1',
-      { id: 'mainHeading', className: 'class1' },
-      'My Site'
-    );
+// class Heading extends React.Component {
+//   render() {
+//     const h1 = React.createElement(
+//       'h1',
+//       { id: 'mainHeading', className: 'class1' },
+//       'My Site'
+//     );
 
-    return React.createElement('header', {}, h1);
-  }
+//     return React.createElement('header', {}, h1);
+//   }
+// }
+
+// функциональный компонент
+function Heading() {
+  
+  const h1 = React.createElement(
+    'h1',
+    { id: 'mainHeading', className: 'class1' },
+    'My Site'
+  );
+
+  return React.createElement('header', {}, h1);
 }
 
 const header = React.createElement(Heading);
