@@ -31,7 +31,7 @@ class Greeting extends React.Component {
           Hello {firstName} {lastName} with age {age}!
         </h2>
         <p>Message is {readStatusText}</p>
-        <button id='btn' onClick={handleClick}>
+        <button onClick={handleClick}>
           Read greeting
         </button>
       </article>
