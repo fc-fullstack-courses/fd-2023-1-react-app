@@ -15,7 +15,7 @@ class Greeting extends React.Component {
     } = this.props;
     const { isRead } = this.state;
 
-    const readStatusText = isRead ? 'read' : 'not read';
+    // const readStatusText = isRead ? 'read' : 'not read';
 
     const handleClick = (e) => {
       // this.state.isRead = true; неправильно
@@ -25,18 +25,28 @@ class Greeting extends React.Component {
       this.setState(stateChanges);
     };
 
+    const readParagraph = isRead ? <ReadMessage /> : <NotReadMessage />;
+
     return (
       <article>
         <h2>
           Hello {firstName} {lastName} with age {age}!
         </h2>
-        <p>Message is {readStatusText}</p>
-        <button onClick={handleClick}>
-          Read greeting
-        </button>
+        {/* <p>Message is {readStatusText}</p> */}
+        {readParagraph}
+        {/* {isRead ? null : <button onClick={handleClick}>Read greeting</button>} */}
+        {!isRead && <button onClick={handleClick}>Read greeting</button>}
       </article>
     );
   }
+}
+
+function ReadMessage() {
+  return <p>Message is read</p>;
+}
+
+function NotReadMessage() {
+  return <p>Message is not read</p>;
 }
 
 export default Greeting;
