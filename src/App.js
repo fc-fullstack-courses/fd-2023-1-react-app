@@ -22,15 +22,13 @@ function App() {
     lastName: 'Doe',
     age: 9887,
   };
-
-  const isRead1 = true;
-
+  
   return (
     <>
       <Heading headerText='header text prop' headerTitle='header title prop' />
-      <Greeting user={user1} isRead={isRead1} />
-      <Greeting user={user2} isRead={true}/>
-      <Greeting user={user3} isRead/>
+      <Greeting user={user1} />
+      <Greeting user={user2} />
+      <Greeting user={user3} />
     </>
   );
 }
