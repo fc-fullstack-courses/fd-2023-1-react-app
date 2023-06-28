@@ -28,15 +28,17 @@ class Greeting extends React.Component {
     const readParagraph = isRead ? <ReadMessage /> : <NotReadMessage />;
 
     return (
-      <article>
-        <h2>
-          Hello {firstName} {lastName} with age {age}!
-        </h2>
-        {/* <p>Message is {readStatusText}</p> */}
-        {readParagraph}
-        {/* {isRead ? null : <button onClick={handleClick}>Read greeting</button>} */}
-        {!isRead && <button onClick={handleClick}>Read greeting</button>}
-      </article>
+      <li>
+        <article>
+          <h2>
+            Hello {firstName} {lastName} with age {age}!
+          </h2>
+          {/* <p>Message is {readStatusText}</p> */}
+          {readParagraph}
+          {/* {isRead ? null : <button onClick={handleClick}>Read greeting</button>} */}
+          {!isRead && <button onClick={handleClick}>Read greeting</button>}
+        </article>
+      </li>
     );
   }
 }
