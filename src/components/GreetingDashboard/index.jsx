@@ -1,6 +1,7 @@
 import React from 'react';
 import usersData from '../../data';
 import GreetingList from '../GreetingList';
+import FavoriteUsersList from '../FavoriteUsersList';
 
 class GreetingDashboard extends React.Component {
   constructor(props) {
@@ -9,6 +10,7 @@ class GreetingDashboard extends React.Component {
     this.state = {
       users: usersData,
       isDirectSort: true,
+      favoriteUsers: [],
     };
 
     // this.sortUsers = this.sortUsers.bind(this);
@@ -44,8 +46,27 @@ class GreetingDashboard extends React.Component {
     });
   };
 
+  makeFavorite = (userId) => {
+    const { favoriteUsers, users } = this.state;
+
+    const favoriteUser = favoriteUsers.find((user) => user.id === userId);
+
+    if (favoriteUser) {
+      return;
+    }
+
+    const user = users.find((user) => user.id === userId);
+
+    const newFavoriteList = structuredClone(favoriteUsers);
+    newFavoriteList.push(user);
+
+    this.setState({
+      favoriteUsers: newFavoriteList,
+    });
+  };
+
   render() {
-    const { users, isDirectSort } = this.state;
+    const { users, isDirectSort, favoriteUsers } = this.state;
 
     return (
       <>
@@ -53,10 +74,23 @@ class GreetingDashboard extends React.Component {
           <p>Current sort order is {isDirectSort ? 'direct' : 'reversed'}</p>
           <button onClick={this.sortUsers}>Toggle sorting order</button>
         </div>
-        <GreetingList users={users} />
+        <GreetingList
+          users={users}
+          callback={this.sortUsers}
+          makeFavorite={this.makeFavorite}
+        />
+        <hr />
+        <FavoriteUsersList users={favoriteUsers} />
       </>
     );
   }
 }
+
+/*
+
+  Добавить компоненту Greeting кнопку удаления пользователя.
+  Если на неё нажать то пользователь и приветствие для него (в GreetingList) должны исчезнуть
+
+*/
 
 export default GreetingDashboard;

@@ -1,12 +1,17 @@
 import React from 'react';
 import Greeting from '../Greeting';
 
-function GreetingList({ users }) {
+function GreetingList({ users, callback, makeFavorite }) {
   const greetingsArr = users.map((user) => (
-    <Greeting key={user.id} user={user} />
+    <Greeting key={user.id} user={user} makeFavorite={makeFavorite} />
   ));
 
-  return <ul>{greetingsArr}</ul>;
+  return (
+    <>
+      <button onClick={callback}>Change parent</button>
+      <ul>{greetingsArr}</ul>;
+    </>
+  );
 }
 
 export default GreetingList;
