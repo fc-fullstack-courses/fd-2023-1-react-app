@@ -13,6 +13,7 @@ class Counter extends React.Component {
   increment = () => {
     // const { count } = this.state;
     // this.setState({ count: count + 2 });
+    console.log('increment');
     this.setState((state, props) => {
       return {
         count: state.count + 1,
@@ -26,12 +27,31 @@ class Counter extends React.Component {
   };
 
   startAutoClicks = () => {
-    if(!this.state.intervalId) {
-      const intervalId = setInterval(this.increment, 1000);
-  
-      this.setState({ intervalId });
-    }
+    // if (!this.state.intervalId) {
+    const intervalId = setInterval(this.increment, 1000);
+
+    this.setState({ intervalId });
+    // }
   };
+
+  componentDidMount() {
+    console.log('componentDidMount');
+    this.startAutoClicks();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log('componentDidUpdate');
+
+    if(Math.random > 0.5) {
+      // можно но только по условию
+      // this.setState()
+    }
+  }
+
+  componentWillUnmount() {
+    console.log('componentWillUnmount');
+    this.stopAutoClicks();
+  }
 
   stopAutoClicks = () => {
     const { intervalId } = this.state;
