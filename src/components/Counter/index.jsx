@@ -1,16 +1,28 @@
-import React from "react";
+import React from 'react';
 
 class Counter extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      count: 0,
+    };
+  }
+
+  increment = () => {
+    const { count } = this.state;
+    this.setState({count: count + 1})
+  }
+
   render() {
-    // const display = React.createElement('p', {}, `Current count is 0`);
-    // const addButton = React.createElement('button', {}, 'Add 1');
+    const { count } = this.state;
 
-    // return React.createElement('section', {}, display, addButton);
-
-    return <section>
-      <p>Count is 0</p>
-      <button>Add 1</button>
-    </section>
+    return (
+      <section>
+        <p>Count is {count}</p>
+        <button onClick={this.increment}>Add 1</button>
+      </section>
+    );
   }
 }
 
