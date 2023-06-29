@@ -1,9 +1,14 @@
 import React from 'react';
 import Greeting from '../Greeting';
 
-function GreetingList({ users, callback, makeFavorite }) {
+function GreetingList({ users, callback, makeFavorite, deleteUser }) {
   const greetingsArr = users.map((user) => (
-    <Greeting key={user.id} user={user} makeFavorite={makeFavorite} />
+    <Greeting
+      key={user.id}
+      user={user}
+      makeFavorite={makeFavorite}
+      deleteUser={deleteUser}
+    />
   ));
 
   return (

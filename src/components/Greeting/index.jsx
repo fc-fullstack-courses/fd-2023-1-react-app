@@ -12,7 +12,8 @@ class Greeting extends React.Component {
   render() {
     const {
       user: { firstName, lastName, age, id },
-      makeFavorite
+      makeFavorite,
+      deleteUser,
     } = this.props;
     const { isRead } = this.state;
 
@@ -39,6 +40,7 @@ class Greeting extends React.Component {
           {/* {isRead ? null : <button onClick={handleClick}>Read greeting</button>} */}
           {!isRead && <button onClick={handleClick}>Read greeting</button>}
           <button onClick={() => makeFavorite(id)}>Make favorite</button>
+          <button onClick={() => deleteUser(id)}>Delete</button>
         </article>
       </li>
     );

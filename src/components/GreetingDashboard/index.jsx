@@ -74,6 +74,14 @@ class GreetingDashboard extends React.Component {
     });
   };
 
+  deleteUser = (userId) => {
+    const { users } = this.state;
+
+    const newUsers = users.filter((user) => user.id !== userId);
+
+    this.setState({ users: newUsers });
+  };
+
   render() {
     const { users, isDirectSort } = this.state;
 
@@ -89,6 +97,7 @@ class GreetingDashboard extends React.Component {
           users={users}
           callback={this.sortUsers}
           makeFavorite={this.makeFavorite}
+          deleteUser={this.deleteUser}
         />
         <hr />
         <FavoriteUsersList users={favoriteUsers} />
