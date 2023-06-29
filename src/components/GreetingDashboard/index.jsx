@@ -3,14 +3,23 @@ import usersData from '../../data';
 import GreetingList from '../GreetingList';
 import FavoriteUsersList from '../FavoriteUsersList';
 
+console.log(usersData);
+const usersWithFavorite = usersData.map((user) => {
+  return {
+    ...user,
+    isFavorite: false,
+  };
+});
+
+console.log(usersWithFavorite);
+
 class GreetingDashboard extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      users: usersData,
+      users: usersWithFavorite,
       isDirectSort: true,
-      favoriteUsers: [],
     };
 
     // this.sortUsers = this.sortUsers.bind(this);
@@ -47,26 +56,28 @@ class GreetingDashboard extends React.Component {
   };
 
   makeFavorite = (userId) => {
-    const { favoriteUsers, users } = this.state;
+    const { users } = this.state;
 
-    const favoriteUser = favoriteUsers.find((user) => user.id === userId);
+    const newUsers = users.map((user) => {
+      if (user.id !== userId) {
+        return user;
+      }
 
-    if (favoriteUser) {
-      return;
-    }
-
-    const user = users.find((user) => user.id === userId);
-
-    const newFavoriteList = structuredClone(favoriteUsers);
-    newFavoriteList.push(user);
+      return {
+        ...user,
+        isFavorite: true,
+      };
+    });
 
     this.setState({
-      favoriteUsers: newFavoriteList,
+      users: newUsers,
     });
   };
 
   render() {
-    const { users, isDirectSort, favoriteUsers } = this.state;
+    const { users, isDirectSort } = this.state;
+
+    const favoriteUsers = users.filter((user) => user.isFavorite);
 
     return (
       <>
