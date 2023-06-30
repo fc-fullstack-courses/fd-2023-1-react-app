@@ -29,19 +29,28 @@ class SignUpForm extends React.Component {
     // signUp();
   };
 
-  handleLoginChange = (e) => {
+  // handleLoginChange = (e) => {
+  //   const {
+  //     target: { value },
+  //   } = e;
+
+  //   this.setState({
+  //     login: value,
+  //   });
+  // };
+
+  handleChange = (e) => {
     const {
-      target: { value },
+      target: { value, name },
     } = e;
 
-    console.log(value);
     this.setState({
-      login: value,
+      [name]: value,
     });
   };
 
   render() {
-    const { login } = this.state;
+    const { login, email, password } = this.state;
 
     return (
       <form onSubmit={this.handleSubmit}>
@@ -50,10 +59,22 @@ class SignUpForm extends React.Component {
           name='login'
           placeholder='login'
           value={login}
-          onChange={this.handleLoginChange}
+          onChange={this.handleChange}
         />
-        <input type='email' name='email' placeholder='email' />
-        <input type='password' name='password' placeholder='password' />
+        <input
+          type='email'
+          name='email'
+          placeholder='email'
+          value={email}
+          onChange={this.handleChange}
+        />
+        <input
+          type='password'
+          name='password'
+          placeholder='password'
+          value={password}
+          onChange={this.handleChange}
+        />
 
         <button type='submit'>SignUp</button>
       </form>
