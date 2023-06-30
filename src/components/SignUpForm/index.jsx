@@ -21,6 +21,7 @@ class SignUpForm extends React.Component {
       password: '',
       comment: '',
       accountLevel: 'advanced',
+      isSubscribed: false,
     };
   }
 
@@ -43,16 +44,19 @@ class SignUpForm extends React.Component {
 
   handleChange = (e) => {
     const {
-      target: { value, name },
+      target: { value, name, type, checked },
     } = e;
 
+    const newValue = type === 'checkbox' ? checked : value;
+
     this.setState({
-      [name]: value,
+      [name]: newValue,
     });
   };
 
   render() {
-    const { login, email, password, comment, accountLevel } = this.state;
+    const { login, email, password, comment, accountLevel, isSubscribed } =
+      this.state;
 
     return (
       <form onSubmit={this.handleSubmit}>
@@ -93,6 +97,15 @@ class SignUpForm extends React.Component {
           <option value='advanced'>advanced level</option>
           <option value='admin'>admin level</option>
         </select>
+        <label>
+          <input
+            type='checkbox'
+            name='isSubscribed'
+            checked={isSubscribed}
+            onChange={this.handleChange}
+          />
+          Subscribe to newsletter
+        </label>
         <button type='submit'>SignUp</button>
       </form>
     );
