@@ -1,5 +1,6 @@
 import React from 'react';
 import './App.css';
+import picSrc from './logo.svg';
 import Counter from './components/Counter';
 import SignUpForm from './components/SignUpForm';
 
@@ -27,6 +28,7 @@ class App extends React.Component {
         </button>
         {isCounterVisible && <Counter />}
         <SignUpForm />
+        <img src={picSrc}/>
       </>
     );
   }
