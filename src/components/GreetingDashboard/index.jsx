@@ -3,16 +3,12 @@ import usersData from '../../data';
 import GreetingList from '../GreetingList';
 import FavoriteUsersList from '../FavoriteUsersList';
 
-console.log(usersData);
 const usersWithFavorite = usersData.map((user) => {
   return {
     ...user,
     isFavorite: false,
   };
 });
-
-console.log(usersWithFavorite);
-
 class GreetingDashboard extends React.Component {
   constructor(props) {
     super(props);

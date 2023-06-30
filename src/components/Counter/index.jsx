@@ -10,10 +10,29 @@ class Counter extends React.Component {
     };
   }
 
+  componentDidMount() {
+    console.log('componentDidMount');
+    this.startAutoClicks();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // console.log('componentDidUpdate');
+
+    if (Math.random > 0.5) {
+      // можно но только по условию
+      // this.setState()
+    }
+  }
+
+  componentWillUnmount() {
+    console.log('componentWillUnmount');
+    this.stopAutoClicks();
+  }
+
   increment = () => {
     // const { count } = this.state;
     // this.setState({ count: count + 2 });
-    console.log('increment');
+    // console.log('increment');
     this.setState((state, props) => {
       return {
         count: state.count + 1,
@@ -27,36 +46,21 @@ class Counter extends React.Component {
   };
 
   startAutoClicks = () => {
-    // if (!this.state.intervalId) {
-    const intervalId = setInterval(this.increment, 1000);
+    if (!this.state.intervalId) {
+      const intervalId = setInterval(this.increment, 1000);
 
-    this.setState({ intervalId });
-    // }
+      this.setState({ intervalId });
+    }
   };
 
-  componentDidMount() {
-    console.log('componentDidMount');
-    this.startAutoClicks();
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    console.log('componentDidUpdate');
-
-    if(Math.random > 0.5) {
-      // можно но только по условию
-      // this.setState()
-    }
-  }
-
-  componentWillUnmount() {
-    console.log('componentWillUnmount');
-    this.stopAutoClicks();
-  }
-
   stopAutoClicks = () => {
-    const { intervalId } = this.state;
-    clearInterval(intervalId);
-    this.setState({ intervalId: null });
+    this.setState((state) => {
+      const { intervalId } = state;
+      console.log(`stopAutoClicks intervalId is ${intervalId}`);
+      clearInterval(intervalId);
+
+      return { intervalId: null };
+    });
   };
 
   render() {
