@@ -22,6 +22,7 @@ class SignUpForm extends React.Component {
       comment: '',
       accountLevel: 'advanced',
       isSubscribed: false,
+      gender: 'male',
     };
   }
 
@@ -55,8 +56,15 @@ class SignUpForm extends React.Component {
   };
 
   render() {
-    const { login, email, password, comment, accountLevel, isSubscribed } =
-      this.state;
+    const {
+      login,
+      email,
+      password,
+      comment,
+      accountLevel,
+      isSubscribed,
+      gender,
+    } = this.state;
 
     return (
       <form onSubmit={this.handleSubmit}>
@@ -81,6 +89,29 @@ class SignUpForm extends React.Component {
           value={password}
           onChange={this.handleChange}
         />
+        <fieldset>
+          <legend>Choose your gender:</legend>
+          <label>
+            <input
+              type='radio'
+              name='gender'
+              value='male'
+              checked={gender === 'male'}
+              onChange={this.handleChange}
+            />
+            Male
+          </label>
+          <label>
+            <input
+              type='radio'
+              name='gender'
+              value='female'
+              checked={gender === 'female'}
+              onChange={this.handleChange}
+            />
+            Female
+          </label>
+        </fieldset>
         <textarea
           name='comment'
           cols='30'
