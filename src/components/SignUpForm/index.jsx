@@ -74,6 +74,13 @@ class SignUpForm extends React.Component {
       gender,
     } = this.state;
 
+    const btnStyles = {
+      color: email !== '' ? 'green' : 'red',
+      padding: '15px',
+      fontSize: '1.5rem',
+      fontWeight: 'bold',
+    };
+
     return (
       <form onSubmit={this.handleSubmit}>
         <input
@@ -145,7 +152,9 @@ class SignUpForm extends React.Component {
           />
           Subscribe to newsletter
         </label>
-        <button type='submit'>SignUp</button>
+        <button style={btnStyles} type='submit'>
+          SignUp
+        </button>
       </form>
     );
   }
