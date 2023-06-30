@@ -11,18 +11,22 @@ function signUp(userData) {
   alert('user created!');
 }
 
+const initialState = {
+  login: '',
+  email: '',
+  password: '',
+  comment: '',
+  accountLevel: 'advanced',
+  isSubscribed: false,
+  gender: 'male',
+};
+
 class SignUpForm extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      login: '',
-      email: '',
-      password: '',
-      comment: '',
-      accountLevel: 'advanced',
-      isSubscribed: false,
-      gender: 'male',
+      ...initialState,
     };
   }
 
@@ -31,6 +35,10 @@ class SignUpForm extends React.Component {
     // console.log(e.target.elements.login.value);
 
     // signUp();
+
+    this.setState({
+      ...initialState,
+    });
   };
 
   // handleLoginChange = (e) => {
