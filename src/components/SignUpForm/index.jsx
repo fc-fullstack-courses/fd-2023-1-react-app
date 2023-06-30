@@ -19,6 +19,8 @@ class SignUpForm extends React.Component {
       login: '',
       email: '',
       password: '',
+      comment: '',
+      accountLevel: 'advanced',
     };
   }
 
@@ -50,7 +52,7 @@ class SignUpForm extends React.Component {
   };
 
   render() {
-    const { login, email, password } = this.state;
+    const { login, email, password, comment, accountLevel } = this.state;
 
     return (
       <form onSubmit={this.handleSubmit}>
@@ -75,7 +77,22 @@ class SignUpForm extends React.Component {
           value={password}
           onChange={this.handleChange}
         />
-
+        <textarea
+          name='comment'
+          cols='30'
+          rows='10'
+          value={comment}
+          onChange={this.handleChange}
+        />
+        <select
+          name='accountLevel'
+          value={accountLevel}
+          onChange={this.handleChange}
+        >
+          <option value='basic'>basic level</option>
+          <option value='advanced'>advanced level</option>
+          <option value='admin'>admin level</option>
+        </select>
         <button type='submit'>SignUp</button>
       </form>
     );
