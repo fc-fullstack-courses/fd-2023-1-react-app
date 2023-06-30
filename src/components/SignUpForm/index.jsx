@@ -1,4 +1,5 @@
 import React from 'react';
+import './SignUpForm.css';
 
 function signUp(userData) {
   const { login, email, password } = userData;
@@ -82,7 +83,7 @@ class SignUpForm extends React.Component {
     };
 
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className='container'>
         <input
           type='text'
           name='login'
