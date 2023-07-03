@@ -1,5 +1,5 @@
 import React from 'react';
-import './Counter.css';
+import styles from './Counter.module.scss';
 
 class Counter extends React.Component {
   constructor(props) {
@@ -68,21 +68,27 @@ class Counter extends React.Component {
     const { count, intervalId } = this.state;
 
     return (
-      <section className='container'>
+      <section className={styles.container}>
         <p>Count is {count}</p>
         <p>
           Autoclicks is{' '}
-          <span className='autoClicksStatus'>
+          <span className={styles.autoClicksStatus}>
             {intervalId ? 'enabled' : 'disabled'}
           </span>
         </p>
-        <button onClick={this.increment} className='btn'>
+        <button onClick={this.increment} className={styles.btn}>
           Add 1
         </button>
-        <button onClick={this.startAutoClicks} className='btn startBtn'>
+        <button
+          onClick={this.startAutoClicks}
+          className={`${styles.btn} ${styles.startBtn}`}
+        >
           Enable autoclicks
         </button>
-        <button onClick={this.stopAutoClicks} className='btn stopBtn'>
+        <button
+          onClick={this.stopAutoClicks}
+          className={`${styles.btn} ${styles.stopBtn}`}
+        >
           Disable autoclicks
         </button>
       </section>
