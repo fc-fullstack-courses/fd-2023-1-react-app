@@ -1,5 +1,7 @@
 import React from 'react';
-import './SignUpForm.css';
+import styles from './SignUpForm.module.css';
+
+console.log(styles);
 
 function signUp(userData) {
   const { login, email, password } = userData;
@@ -77,13 +79,10 @@ class SignUpForm extends React.Component {
 
     const btnStyles = {
       color: email !== '' ? 'green' : 'red',
-      padding: '15px',
-      fontSize: '1.5rem',
-      fontWeight: 'bold',
     };
 
     return (
-      <form onSubmit={this.handleSubmit} className='container'>
+      <form onSubmit={this.handleSubmit} className={styles.container}>
         <input
           type='text'
           name='login'
@@ -153,7 +152,7 @@ class SignUpForm extends React.Component {
           />
           Subscribe to newsletter
         </label>
-        <button style={btnStyles} type='submit'>
+        <button style={btnStyles} type='submit' className={styles.btn}>
           SignUp
         </button>
       </form>
