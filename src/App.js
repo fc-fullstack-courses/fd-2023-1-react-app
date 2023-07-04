@@ -5,6 +5,7 @@ import SignUpForm from './components/SignUpForm';
 import GreetingDashboard from './components/GreetingDashboard';
 import Heading from './components/Heading';
 import Greeting from './components/Greeting';
+import List from './components/List';
 
 class App extends React.Component {
   constructor(props) {
@@ -23,6 +24,7 @@ class App extends React.Component {
 
   render() {
     const { isCounterVisible } = this.state;
+
     return (
       <>
         <Heading headerText={'asdsadsdas'} headerTitle='adsada' />
@@ -32,17 +34,14 @@ class App extends React.Component {
         {isCounterVisible && <Counter />}
         <SignUpForm />
         <GreetingDashboard />
-        {/* <Greeting
-          user={{
-            firstName: 'adsa',
-            lastName: 'asdsad',
-            age: 123,
-            id: 12321,
-            password: 'asd233e23dsa',
-          }}
-          makeFavorite={() => {}}
-          deleteUser={() => {}}
-        /> */}
+        <List listTitle='Продукты'>
+          <li>Хлеб</li>
+          <li>Молоко</li>
+        </List>
+        <List listTitle='задачи'>
+          <li>помыть посуду</li>
+          <li>выгулять кота</li>
+        </List>
       </>
     );
   }
