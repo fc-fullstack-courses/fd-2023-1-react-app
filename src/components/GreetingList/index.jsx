@@ -1,5 +1,6 @@
 import React from 'react';
-import Greeting from '../Greeting';
+import Greeting, { userObjectProp } from '../Greeting';
+import PropTypes from 'prop-types';
 
 function GreetingList({ users, callback, makeFavorite, deleteUser }) {
   const greetingsArr = users.map((user) => (
@@ -18,5 +19,9 @@ function GreetingList({ users, callback, makeFavorite, deleteUser }) {
     </>
   );
 }
+
+GreetingList.propTypes = {
+  users: PropTypes.arrayOf(userObjectProp),
+};
 
 export default GreetingList;

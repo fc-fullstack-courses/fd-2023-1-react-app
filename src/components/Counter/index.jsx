@@ -13,7 +13,7 @@ class Counter extends React.Component {
   }
 
   componentDidMount() {
-    console.log('componentDidMount');
+    // console.log('componentDidMount');
     this.startAutoClicks();
   }
 
@@ -27,7 +27,7 @@ class Counter extends React.Component {
   }
 
   componentWillUnmount() {
-    console.log('componentWillUnmount');
+    // console.log('componentWillUnmount');
     this.stopAutoClicks();
   }
 
@@ -58,7 +58,7 @@ class Counter extends React.Component {
   stopAutoClicks = () => {
     this.setState((state) => {
       const { intervalId } = state;
-      console.log(`stopAutoClicks intervalId is ${intervalId}`);
+      // console.log(`stopAutoClicks intervalId is ${intervalId}`);
       clearInterval(intervalId);
 
       return { intervalId: null };

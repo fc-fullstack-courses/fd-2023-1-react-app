@@ -1,4 +1,5 @@
-import React from "react";
+import React from 'react';
+import PropTypes from 'prop-types';
 
 // классовый компонент
 // class Heading extends React.Component {
@@ -47,5 +48,10 @@ function Heading(props) {
     </header>
   );
 }
+
+Heading.propTypes = {
+  headerText: PropTypes.string,
+  headerTitle: PropTypes.string.isRequired,
+};
 
 export default Heading;

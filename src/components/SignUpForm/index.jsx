@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './SignUpForm.module.scss';
 
-console.log(styles);
+// console.log(styles);
 
 function signUp(userData) {
   const { login, email, password } = userData;

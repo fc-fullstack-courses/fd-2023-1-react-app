@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 class Greeting extends React.Component {
   constructor(props) {
@@ -46,6 +47,27 @@ class Greeting extends React.Component {
     );
   }
 }
+
+// const userObjectProp = PropTypes.shape({
+//   firstName: PropTypes.string.isRequired,
+//   lastName: PropTypes.string.isRequired,
+//   age: PropTypes.number.isRequired,
+//   id: PropTypes.number.isRequired,
+// });
+
+export const userObjectProp = PropTypes.exact({
+  firstName: PropTypes.string.isRequired,
+  lastName: PropTypes.string.isRequired,
+  age: PropTypes.number.isRequired,
+  id: PropTypes.number.isRequired,
+  isFavorite: PropTypes.bool,
+});
+
+Greeting.propTypes = {
+  makeFavorite: PropTypes.func.isRequired,
+  makeFavorite: PropTypes.func.isRequired,
+  user: userObjectProp.isRequired,
+};
 
 function ReadMessage() {
   return <p>Message is read</p>;
