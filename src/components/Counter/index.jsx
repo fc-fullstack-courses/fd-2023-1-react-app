@@ -67,12 +67,14 @@ class Counter extends React.Component {
   render() {
     const { count, intervalId } = this.state;
 
+    const currentColor = intervalId ? styles.greenText : styles.redText;
+
     return (
       <section className={styles.container}>
         <p>Count is {count}</p>
         <p>
           Autoclicks is{' '}
-          <span className={styles.autoClicksStatus}>
+          <span className={`${styles.autoClicksStatus} ${currentColor}`}>
             {intervalId ? 'enabled' : 'disabled'}
           </span>
         </p>
@@ -81,13 +83,13 @@ class Counter extends React.Component {
         </button>
         <button
           onClick={this.startAutoClicks}
-          className={`${styles.btn} ${styles.startBtn}`}
+          className={`${styles.btn} ${styles.greenText}`}
         >
           Enable autoclicks
         </button>
         <button
           onClick={this.stopAutoClicks}
-          className={`${styles.btn} ${styles.stopBtn}`}
+          className={`${styles.btn} ${styles.redText}`}
         >
           Disable autoclicks
         </button>
