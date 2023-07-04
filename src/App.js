@@ -7,6 +7,7 @@ import Heading from './components/Heading';
 import Greeting from './components/Greeting';
 import List from './components/List';
 import FlexContainer from './components/FlexContainer';
+import ImgWrapper from './components/ImgWrapper';
 
 class App extends React.Component {
   constructor(props) {
@@ -43,12 +44,21 @@ class App extends React.Component {
           <li>помыть посуду</li>
           <li>выгулять кота</li>
         </List>
-        <FlexContainer direction="column" ai='flex-end'>
+        <FlexContainer direction='column' ai='flex-end'>
           <div>1</div>
           <div>2</div>
           <div>3</div>
           <div>4</div>
         </FlexContainer>
+        <ImgWrapper
+          width='500px'
+          heigth='500px'
+          onClick={() => alert('you clicked')}
+          title="some title"
+          id="wrapper1"
+        >
+          <img src='https://apod.nasa.gov/apod/image/2110/LucyLaunchB_Kraus_2048.jpg' />
+        </ImgWrapper>
       </>
     );
   }

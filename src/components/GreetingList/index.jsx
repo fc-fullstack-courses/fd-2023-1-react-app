@@ -2,14 +2,9 @@ import React from 'react';
 import Greeting, { userObjectProp } from '../Greeting';
 import PropTypes from 'prop-types';
 
-function GreetingList({ users, callback, makeFavorite, deleteUser }) {
+function GreetingList({ users, callback, ...rest }) {
   const greetingsArr = users.map((user) => (
-    <Greeting
-      key={user.id}
-      user={user}
-      makeFavorite={makeFavorite}
-      deleteUser={deleteUser}
-    />
+    <Greeting key={user.id} user={user} {...rest} />
   ));
 
   return (
