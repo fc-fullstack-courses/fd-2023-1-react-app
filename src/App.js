@@ -6,6 +6,7 @@ import GreetingDashboard from './components/GreetingDashboard';
 import Heading from './components/Heading';
 import Greeting from './components/Greeting';
 import List from './components/List';
+import FlexContainer from './components/FlexContainer';
 
 class App extends React.Component {
   constructor(props) {
@@ -42,9 +43,22 @@ class App extends React.Component {
           <li>помыть посуду</li>
           <li>выгулять кота</li>
         </List>
+        <FlexContainer direction="column" ai='flex-end'>
+          <div>1</div>
+          <div>2</div>
+          <div>3</div>
+          <div>4</div>
+        </FlexContainer>
       </>
     );
   }
 }
+
+/*
+  Созадть компонент FlexContainer. Его стили можно настроить пропсами
+  также ему можно передать детей, которых он будет отображать в качестве
+  флекс-детей
+
+*/
 
 export default App;
