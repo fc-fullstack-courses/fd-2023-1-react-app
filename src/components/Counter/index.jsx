@@ -1,4 +1,5 @@
 import React from 'react';
+import classNames from 'classnames';
 import styles from './Counter.module.scss';
 
 class Counter extends React.Component {
@@ -65,31 +66,43 @@ class Counter extends React.Component {
   };
 
   render() {
-    const { count, intervalId } = this.state;
+    const { count, intervalId, theme } = this.state;
 
-    const currentColor = intervalId ? styles.greenText : styles.redText;
+    
+
+    const addBtnClassNames = classNames(styles.btn);
+    const startAutoClicksClassNames = classNames(styles.btn, styles.greenText);
+    const stopAutoClicksClassNames = classNames(styles.btn, styles.redText);
+
+    const autoClicksStatusClassNames = classNames(styles.autoClicksStatus, {
+      [styles.greenText] : intervalId,
+      [styles.redText]: !intervalId,
+      [styles.darkTheme]: theme === 'dark',
+      [styles.lightTheme]: theme === 'light',
+      [styles.greenTheme]: theme === 'green',
+    });
 
     return (
       <section className={styles.container}>
         <p>Count is {count}</p>
         <p>
           Autoclicks is{' '}
-          <span className={`${styles.autoClicksStatus} ${currentColor}`}>
+          <span className={autoClicksStatusClassNames}>
             {intervalId ? 'enabled' : 'disabled'}
           </span>
         </p>
-        <button onClick={this.increment} className={styles.btn}>
+        <button onClick={this.increment} className={addBtnClassNames}>
           Add 1
         </button>
         <button
           onClick={this.startAutoClicks}
-          className={`${styles.btn} ${styles.greenText}`}
+          className={startAutoClicksClassNames}
         >
           Enable autoclicks
         </button>
         <button
           onClick={this.stopAutoClicks}
-          className={`${styles.btn} ${styles.redText}`}
+          className={stopAutoClicksClassNames}
         >
           Disable autoclicks
         </button>
