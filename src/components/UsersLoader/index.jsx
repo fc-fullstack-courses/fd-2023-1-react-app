@@ -8,13 +8,30 @@ class UsersLoader extends Component {
       users: [],
       isLoading: false,
       error: null,
+      currentPage: 1,
     };
   }
 
-  componentDidMount() {
+  nextPage = () => {
+    const { currentPage } = this.state;
+    this.setState({ currentPage: currentPage + 1 });
+  };
+
+  prevPage = () => {
+    const { currentPage } = this.state;
+    this.setState({
+      currentPage: currentPage > 1 ? currentPage - 1 : currentPage,
+    });
+  };
+
+  load = () => {
+    const { currentPage } = this.state;
+
     this.setState({ isLoading: true });
 
-    fetch('https://randomuser.me/api/')
+    fetch(
+      `https://randomuser.me/api/?results=20&seed=fd-2023-1&page=${currentPage}`
+    )
       .then((response) => response.json())
       .then((data) => {
         this.setState({
@@ -27,6 +44,18 @@ class UsersLoader extends Component {
       .finally(() => {
         this.setState({ isLoading: false });
       });
+  };
+
+  componentDidMount() {
+    this.load();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { currentPage } = this.state;
+
+    if (prevState.currentPage !== currentPage) {
+      this.load();
+    }
   }
 
   render() {
@@ -44,7 +73,15 @@ class UsersLoader extends Component {
       <article key={user.login.uuid}>{JSON.stringify(user)}</article>
     ));
 
-    return <div>{userCards}</div>;
+    return (
+      <div>
+        <div>
+          <button onClick={this.prevPage}>Previous page</button>
+          <button onClick={this.nextPage}>Next page</button>
+        </div>
+        {userCards}
+      </div>
+    );
   }
 }
 
