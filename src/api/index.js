@@ -1,23 +1,23 @@
 import queryString from 'query-string';
+import CONFIG from '../configs';
 
 export const getUsers = (options) => {
-
   const defaultOptions = {
     page: 1,
-    results: 20,
-    format: 'json',
-    seed: 'fd-2023-1',
-    inc: ['name', 'email','login', 'gender', 'nat']
-  }
+    results: CONFIG.RESULTS,
+    format: CONFIG.FORMAT,
+    seed: CONFIG.API_KEY,
+    inc: CONFIG.DEFAULT_USER_DATA,
+  };
 
   const finalOptions = {
     ...defaultOptions,
-    ...options
-  }
+    ...options,
+  };
 
-  const query = queryString.stringify(finalOptions, {arrayFormat: 'comma'});
+  const query = queryString.stringify(finalOptions, { arrayFormat: 'comma' });
 
-  return fetch(`https://randomuser.me/api/?${query}`).then((response) =>
+  return fetch(`${CONFIG.BASE_URL}?${query}`).then((response) =>
     response.json()
   );
 };
