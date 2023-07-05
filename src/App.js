@@ -8,6 +8,7 @@ import Greeting from './components/Greeting';
 import List from './components/List';
 import FlexContainer from './components/FlexContainer';
 import ImgWrapper from './components/ImgWrapper';
+import UsersLoader from './components/UsersLoader';
 
 class App extends React.Component {
   constructor(props) {
@@ -34,9 +35,10 @@ class App extends React.Component {
           Toggle counter visibility
         </button>
         {isCounterVisible && <Counter />}
+        <UsersLoader />
         <SignUpForm />
-        <GreetingDashboard />
-        <List listTitle='Продукты'>
+        {/* <GreetingDashboard /> */}
+        {/* <List listTitle='Продукты'>
           <li>Хлеб</li>
           <li>Молоко</li>
         </List>
@@ -58,7 +60,7 @@ class App extends React.Component {
           id="wrapper1"
         >
           <img src='https://apod.nasa.gov/apod/image/2110/LucyLaunchB_Kraus_2048.jpg' />
-        </ImgWrapper>
+        </ImgWrapper> */}
       </>
     );
   }
