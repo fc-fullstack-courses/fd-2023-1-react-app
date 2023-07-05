@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { getUsers } from '../../api';
+import UserCard from '../UserCard';
 
 class UsersLoader extends Component {
   constructor(props) {
@@ -61,16 +62,8 @@ class UsersLoader extends Component {
   render() {
     const { users, isLoading, error } = this.state;
 
-    if (isLoading) {
-      return <div>LOADING ...</div>;
-    }
-
-    if (error) {
-      return <div>ERROR HAPPENED</div>;
-    }
-
     const userCards = users.map((user) => (
-      <article key={user.login.uuid}>{JSON.stringify(user)}</article>
+      <UserCard key={user.login.uuid} user={user}/>
     ));
 
     return (
@@ -79,6 +72,8 @@ class UsersLoader extends Component {
           <button onClick={this.prevPage}>Previous page</button>
           <button onClick={this.nextPage}>Next page</button>
         </div>
+        {isLoading && <div>LOADING ... </div>}
+        {error && <div>ERROR HAPPENED</div>}
         {userCards}
       </div>
     );
