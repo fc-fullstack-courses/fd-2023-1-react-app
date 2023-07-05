@@ -30,7 +30,9 @@ class UsersLoader extends Component {
 
     this.setState({ isLoading: true });
 
-    getUsers(currentPage)
+    getUsers({
+      page: currentPage,
+    })
       .then((data) => {
         this.setState({
           users: data.results,
