@@ -12,6 +12,7 @@ import UsersLoader from './components/UsersLoader';
 import PostsLoader from './components/PostsLoader';
 import DataLoader from './components/DataLoader';
 import { getPosts } from './api';
+import Tree from './components/Tree';
 
 class App extends React.Component {
   constructor(props) {
@@ -19,6 +20,12 @@ class App extends React.Component {
 
     this.state = {
       isCounterVisible: true,
+      user: {
+        id: 1,
+        firstName: 'User',
+        lastName: 'Userenko',
+        email: 'user@mail.com',
+      },
     };
   }
 
@@ -57,6 +64,7 @@ class App extends React.Component {
           Toggle counter visibility
         </button>
         {isCounterVisible && <Counter />} */}
+        <Tree user={this.state.user} />
         <DataLoader getData={getPosts} render={renderPosts} />
         {/* <PostsLoader />
         <UsersLoader /> */}
