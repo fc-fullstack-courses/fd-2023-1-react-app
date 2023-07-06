@@ -9,6 +9,7 @@ import List from './components/List';
 import FlexContainer from './components/FlexContainer';
 import ImgWrapper from './components/ImgWrapper';
 import UsersLoader from './components/UsersLoader';
+import PostsLoader from './components/PostsLoader';
 
 class App extends React.Component {
   constructor(props) {
@@ -30,13 +31,14 @@ class App extends React.Component {
 
     return (
       <>
-        <Heading headerText={'asdsadsdas'} headerTitle='adsada' />
+        {/* <Heading headerText={'asdsadsdas'} headerTitle='adsada' />
         <button onClick={this.toggleVisibility}>
           Toggle counter visibility
         </button>
-        {isCounterVisible && <Counter />}
+        {isCounterVisible && <Counter />} */}
+        <PostsLoader />
         <UsersLoader />
-        <SignUpForm />
+        {/* <SignUpForm /> */}
         {/* <GreetingDashboard /> */}
         {/* <List listTitle='Продукты'>
           <li>Хлеб</li>
