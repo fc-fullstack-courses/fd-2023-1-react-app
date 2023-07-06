@@ -10,6 +10,8 @@ import FlexContainer from './components/FlexContainer';
 import ImgWrapper from './components/ImgWrapper';
 import UsersLoader from './components/UsersLoader';
 import PostsLoader from './components/PostsLoader';
+import DataLoader from './components/DataLoader';
+import { getPosts } from './api';
 
 class App extends React.Component {
   constructor(props) {
@@ -29,6 +31,25 @@ class App extends React.Component {
   render() {
     const { isCounterVisible } = this.state;
 
+    const renderPosts = (state) => {
+      const { data: posts, isLoading, error } = state;
+
+      const postsCards = posts.map((post) => (
+        <article key={post.id}>
+          <h2>{post.title}</h2>
+          <p>{post.body}</p>
+        </article>
+      ));
+
+      return (
+        <div>
+          {isLoading && <div>LOADING ... </div>}
+          {error && <div>ERROR LOADING POSTS</div>}
+          {postsCards}
+        </div>
+      );
+    };
+
     return (
       <>
         {/* <Heading headerText={'asdsadsdas'} headerTitle='adsada' />
@@ -36,8 +57,9 @@ class App extends React.Component {
           Toggle counter visibility
         </button>
         {isCounterVisible && <Counter />} */}
-        <PostsLoader />
-        <UsersLoader />
+        <DataLoader getData={getPosts} render={renderPosts} />
+        {/* <PostsLoader />
+        <UsersLoader /> */}
         {/* <SignUpForm /> */}
         {/* <GreetingDashboard /> */}
         {/* <List listTitle='Продукты'>
