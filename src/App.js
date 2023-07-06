@@ -13,7 +13,9 @@ import PostsLoader from './components/PostsLoader';
 import DataLoader from './components/DataLoader';
 import { getPosts } from './api';
 import Tree from './components/Tree';
+import { UserContext } from './contexts';
 
+console.log(UserContext);
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -58,13 +60,13 @@ class App extends React.Component {
     };
 
     return (
-      <>
+      <UserContext.Provider value={this.state.user}>
         {/* <Heading headerText={'asdsadsdas'} headerTitle='adsada' />
         <button onClick={this.toggleVisibility}>
           Toggle counter visibility
         </button>
         {isCounterVisible && <Counter />} */}
-        <Tree user={this.state.user} />
+        <Tree />
         <DataLoader getData={getPosts} render={renderPosts} />
         {/* <PostsLoader />
         <UsersLoader /> */}
@@ -93,7 +95,7 @@ class App extends React.Component {
         >
           <img src='https://apod.nasa.gov/apod/image/2110/LucyLaunchB_Kraus_2048.jpg' />
         </ImgWrapper> */}
-      </>
+      </UserContext.Provider>
     );
   }
 }
