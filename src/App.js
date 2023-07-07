@@ -14,6 +14,7 @@ import DataLoader from './components/DataLoader';
 import { getPosts } from './api';
 import Tree from './components/Tree';
 import { UserContext } from './contexts';
+import Sidebar from './components/Sidebar';
 
 console.log(UserContext);
 class App extends React.Component {
@@ -67,6 +68,7 @@ class App extends React.Component {
         </button>
         {isCounterVisible && <Counter />} */}
         <Tree />
+        <Sidebar />
         <DataLoader getData={getPosts} render={renderPosts} />
         {/* <PostsLoader />
         <UsersLoader /> */}
