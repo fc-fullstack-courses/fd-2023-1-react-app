@@ -13,10 +13,12 @@ import PostsLoader from './components/PostsLoader';
 import DataLoader from './components/DataLoader';
 import { getPosts } from './api';
 import Tree from './components/Tree';
-import { UserContext } from './contexts';
+import { UserContext, ThemeContext } from './contexts';
 import Sidebar from './components/Sidebar';
+import CONSTANTS from './constants';
 
-console.log(UserContext);
+const { THEMES } = CONSTANTS;
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -29,6 +31,7 @@ class App extends React.Component {
         lastName: 'Userenko',
         email: 'user@mail.com',
       },
+      theme: THEMES.DARK_THEME,
     };
   }
 
@@ -38,8 +41,12 @@ class App extends React.Component {
     });
   };
 
+  switchTheme = (newTheme) => {
+    this.setState({ theme: newTheme });
+  };
+
   render() {
-    const { isCounterVisible } = this.state;
+    const { isCounterVisible, user, theme } = this.state;
 
     const renderPosts = (state) => {
       const { data: posts, isLoading, error } = state;
@@ -61,20 +68,21 @@ class App extends React.Component {
     };
 
     return (
-      <UserContext.Provider value={this.state.user}>
-        {/* <Heading headerText={'asdsadsdas'} headerTitle='adsada' />
+      <ThemeContext.Provider value={[theme, this.switchTheme]}>
+        <UserContext.Provider value={user}>
+          {/* <Heading headerText={'asdsadsdas'} headerTitle='adsada' />
         <button onClick={this.toggleVisibility}>
           Toggle counter visibility
         </button>
         {isCounterVisible && <Counter />} */}
-        <Tree />
-        <Sidebar />
-        <DataLoader getData={getPosts} render={renderPosts} />
-        {/* <PostsLoader />
+          <Tree />
+          <Sidebar />
+          <DataLoader getData={getPosts} render={renderPosts} />
+          {/* <PostsLoader />
         <UsersLoader /> */}
-        {/* <SignUpForm /> */}
-        {/* <GreetingDashboard /> */}
-        {/* <List listTitle='Продукты'>
+          {/* <SignUpForm /> */}
+          {/* <GreetingDashboard /> */}
+          {/* <List listTitle='Продукты'>
           <li>Хлеб</li>
           <li>Молоко</li>
         </List>
@@ -97,7 +105,8 @@ class App extends React.Component {
         >
           <img src='https://apod.nasa.gov/apod/image/2110/LucyLaunchB_Kraus_2048.jpg' />
         </ImgWrapper> */}
-      </UserContext.Provider>
+        </UserContext.Provider>
+      </ThemeContext.Provider>
     );
   }
 }
