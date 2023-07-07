@@ -16,6 +16,7 @@ import Tree from './components/Tree';
 import { UserContext, ThemeContext } from './contexts';
 import Sidebar from './components/Sidebar';
 import CONSTANTS from './constants';
+import Calendar from './components/Calendar';
 
 const { THEMES } = CONSTANTS;
 
@@ -75,6 +76,7 @@ class App extends React.Component {
           Toggle counter visibility
         </button>
         {isCounterVisible && <Counter />} */}
+          <Calendar />
           <Tree />
           <Sidebar />
           <DataLoader getData={getPosts} render={renderPosts} />
