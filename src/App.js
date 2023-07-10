@@ -70,6 +70,7 @@ class App extends React.Component {
 
           <Route path='/profile' component={ProfilePage} />
 
+          <Route path='*' component={NotFoundPage} />
         </Switch>
       </BrowserRouter>
     );
@@ -94,6 +95,10 @@ function AboutPage(props) {
 function ProfilePage(props) {
   console.log(props);
   return <div>PROFILE</div>;
+}
+
+function NotFoundPage(props) {
+  return <div>404. Page not found</div>
 }
 
 export default App;
