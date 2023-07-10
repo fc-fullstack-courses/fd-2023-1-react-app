@@ -4,6 +4,7 @@ import './App.css';
 import { UserContext, ThemeContext } from './contexts';
 
 import CONSTANTS from './constants';
+import HomePage from './pages/HomePage';
 
 const { THEMES } = CONSTANTS;
 
@@ -36,24 +37,6 @@ class App extends React.Component {
   render() {
     return (
       <BrowserRouter>
-        <header>
-          <nav>
-            <ul>
-              <li>
-                <Link to='/'>To home</Link>
-              </li>
-              <li>
-                <Link to='/about'>To about</Link>
-              </li>
-              <li>
-                <Link to='/contacts'>To contacts</Link>
-              </li>
-              <li>
-                <Link to='/profile'>To profile</Link>
-              </li>
-            </ul>
-          </nav>
-        </header>
         <Switch>
           <Route exact path='/'>
             <HomePage />
@@ -77,11 +60,6 @@ class App extends React.Component {
   }
 }
 
-function HomePage(props) {
-  console.log(props);
-  return <div>HOME</div>;
-}
-
 function ContactsPage(props) {
   console.log(props);
   return <div>CONTACTS</div>;
@@ -98,7 +76,7 @@ function ProfilePage(props) {
 }
 
 function NotFoundPage(props) {
-  return <div>404. Page not found</div>
+  return <div>404. Page not found</div>;
 }
 
 export default App;
