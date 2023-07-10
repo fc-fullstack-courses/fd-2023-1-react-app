@@ -39,9 +39,18 @@ class App extends React.Component {
         <header>
           <nav>
             <ul>
-              <li><Link to='/'>To home</Link></li>
-              <li><Link to='/about'>To about</Link></li>
-              <li><Link to='/contacts'>To contacts</Link></li>
+              <li>
+                <Link to='/'>To home</Link>
+              </li>
+              <li>
+                <Link to='/about'>To about</Link>
+              </li>
+              <li>
+                <Link to='/contacts'>To contacts</Link>
+              </li>
+              <li>
+                <Link to='/profile'>To profile</Link>
+              </li>
             </ul>
           </nav>
         </header>
@@ -51,28 +60,40 @@ class App extends React.Component {
           </Route>
 
           <Route path='/about'>
-            <AboutPage />
+            {(routeProps) => <AboutPage {...routeProps} />}
           </Route>
 
-          <Route path='/contacts'>
-            <ContactsPage />
-          </Route>
+          <Route
+            path='/contacts'
+            render={(routeProps) => <ContactsPage {...routeProps} />}
+          />
+
+          <Route path='/profile' component={ProfilePage} />
+
         </Switch>
       </BrowserRouter>
     );
   }
 }
 
-function HomePage() {
+function HomePage(props) {
+  console.log(props);
   return <div>HOME</div>;
 }
 
-function ContactsPage() {
+function ContactsPage(props) {
+  console.log(props);
   return <div>CONTACTS</div>;
 }
 
-function AboutPage() {
+function AboutPage(props) {
+  console.log(props);
   return <div>ABOUT US</div>;
+}
+
+function ProfilePage(props) {
+  console.log(props);
+  return <div>PROFILE</div>;
 }
 
 export default App;
