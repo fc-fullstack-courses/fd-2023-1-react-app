@@ -6,21 +6,24 @@ function Counter(props) {
   const [count, setCount] = useState(0);
   const [coords, setCoords] = useState({
     x: 0,
-    y: 0
+    y: 0,
   });
 
   const handleClick = () => {
-    setCount(count + 1);
+    setCount((currentCount) => {
+
+      return currentCount + 1;
+    });
   };
 
   const handleMouseMove = (e) => {
-    const {clientX, clientY} = e;
+    const { clientX, clientY } = e;
 
     setCoords({
       x: clientX,
-      y: clientY
+      y: clientY,
     });
-  }
+  };
 
   return (
     <section onMouseMove={handleMouseMove} className={styles.container}>
