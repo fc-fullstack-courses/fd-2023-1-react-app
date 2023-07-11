@@ -46,7 +46,7 @@ class App extends React.Component {
                 <HomePage />
               </Route>
 
-              <Route path='/about'>
+              {/* <Route path='/about'>
                 {(routeProps) => <AboutPage {...routeProps} />}
               </Route>
 
@@ -55,7 +55,7 @@ class App extends React.Component {
                 render={(routeProps) => <ContactsPage {...routeProps} />}
               />
 
-              <Route path='/profile' component={ProfilePage} />
+              <Route path='/profile' component={ProfilePage} /> */}
               <Route path='/hooks' component={HooksPage} />
 
               <Route path='*' component={NotFoundPage} />

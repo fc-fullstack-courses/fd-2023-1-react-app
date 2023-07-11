@@ -7,7 +7,6 @@ const HomePage = (props) => {
     <div>
       <Header />
       <h1>HomePage</h1>
-      <GreetingDashboard />
     </div>
   );
 };
