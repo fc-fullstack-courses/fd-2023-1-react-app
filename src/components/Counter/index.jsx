@@ -10,28 +10,38 @@ function Counter(props) {
     y: 0,
   });
 
+  useEffect(function createEffects() {
+    // createEffects = componentDidMount + componentDidUpdate
+    console.log('createEffects');
+
+    // clearEffects ~= componentWillUnmount + также запускается при каждой отрисовке компонента перед createEffects
+    return function clearEffects() {
+      console.log('clearEffects');
+    };
+  });
+
   const handleClick = () => {
+    console.log('increment');
     setCount((currentCount) => {
       return currentCount + 1;
     });
   };
 
   const startAutoClicks = () => {
-    if(!intervalId) {
+    if (!intervalId) {
       const newIntervalId = setInterval(handleClick, 1000);
 
       setIntervalId(newIntervalId);
     }
-  }
+  };
 
   const stopAutoClicks = () => {
     setIntervalId((intervalId) => {
-
       clearInterval(intervalId);
 
       return null;
-    })
-  }
+    });
+  };
 
   const handleMouseMove = (e) => {
     const { clientX, clientY } = e;
