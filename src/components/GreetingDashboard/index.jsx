@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import usersData from '../../data';
 import GreetingList from '../GreetingList';
 import FavoriteUsersList from '../FavoriteUsersList';
@@ -9,33 +9,13 @@ const usersWithFavorite = usersData.map((user) => {
     isFavorite: false,
   };
 });
-class GreetingDashboard extends React.Component {
-  constructor(props) {
-    super(props);
+// Переделать компонент на функциональный. Состояние сделать на хуках
+function GreetingDashboard(props) {
+  const [users, setUsers] = useState(usersWithFavorite);
+  const [isDirectSort, setIsDirectSort] = useState(true);
 
-    this.state = {
-      users: usersWithFavorite,
-      isDirectSort: true,
-    };
-
-    // this.sortUsers = this.sortUsers.bind(this);
-  }
-
-  sortUsers = () => {
-    const { isDirectSort, users } = this.state;
-
-    /*
-      1. взять массив
-      2. перевернуть его
-      3. обновить состояние
-    */
-
-    // const copy = [...users];
-
-    // const deepCopy = JSON.parse(JSON.stringify(users));
+  const sortUsers = () => {
     const usersCopy = structuredClone(users);
-
-    // usersCopy.reverse();
 
     usersCopy.sort((a, b) => {
       if (isDirectSort) {
@@ -45,15 +25,11 @@ class GreetingDashboard extends React.Component {
       return a.id - b.id;
     });
 
-    this.setState({
-      users: usersCopy,
-      isDirectSort: !isDirectSort,
-    });
+    setUsers(usersCopy);
+    setIsDirectSort(!isDirectSort);
   };
 
-  makeFavorite = (userId) => {
-    const { users } = this.state;
-
+  const makeFavorite = (userId) => {
     const newUsers = users.map((user) => {
       if (user.id !== userId) {
         return user;
@@ -65,41 +41,33 @@ class GreetingDashboard extends React.Component {
       };
     });
 
-    this.setState({
-      users: newUsers,
-    });
+    setUsers(newUsers);
   };
 
-  deleteUser = (userId) => {
-    const { users } = this.state;
-
+  const deleteUser = (userId) => {
     const newUsers = users.filter((user) => user.id !== userId);
 
-    this.setState({ users: newUsers });
+    setUsers(newUsers);
   };
 
-  render() {
-    const { users, isDirectSort } = this.state;
+  const favoriteUsers = users.filter((user) => user.isFavorite);
 
-    const favoriteUsers = users.filter((user) => user.isFavorite);
-
-    return (
-      <>
-        <div>
-          <p>Current sort order is {isDirectSort ? 'direct' : 'reversed'}</p>
-          <button onClick={this.sortUsers}>Toggle sorting order</button>
-        </div>
-        <GreetingList
-          users={users}
-          callback={this.sortUsers}
-          makeFavorite={this.makeFavorite}
-          deleteUser={this.deleteUser}
-        />
-        <hr />
-        <FavoriteUsersList users={favoriteUsers} />
-      </>
-    );
-  }
+  return (
+    <>
+      <div>
+        <p>Current sort order is {isDirectSort ? 'direct' : 'reversed'}</p>
+        <button onClick={sortUsers}>Toggle sorting order</button>
+      </div>
+      <GreetingList
+        users={users}
+        callback={sortUsers}
+        makeFavorite={makeFavorite}
+        deleteUser={deleteUser}
+      />
+      <hr />
+      <FavoriteUsersList users={favoriteUsers} />
+    </>
+  );
 }
 
 /*
