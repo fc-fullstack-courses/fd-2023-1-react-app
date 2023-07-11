@@ -5,6 +5,8 @@ import styles from './Counter.module.scss';
 function Counter(props) {
   const [state, setState] = useState({
     count: 0,
+    x: 0,
+    y: 0
   });
 
   const handleClick = () => {
@@ -13,9 +15,20 @@ function Counter(props) {
     });
   };
 
+  const handleMouseMove = (e) => {
+    const {clientX, clientY} = e;
+
+    setState({
+      x: clientX,
+      y: clientY
+    });
+  }
+
   return (
-    <section className={styles.container}>
+    <section onMouseMove={handleMouseMove} className={styles.container}>
       <p>Count is {state.count}</p>
+      <p>X is {state.x}</p>
+      <p>Y is {state.y}</p>
       <button onClick={handleClick}>Add 1</button>
     </section>
   );
