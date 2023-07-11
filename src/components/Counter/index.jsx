@@ -11,6 +11,7 @@ function Counter(props) {
 
   const handleClick = () => {
     setState({
+      ...state,
       count: state.count + 1,
     });
   };
@@ -19,6 +20,7 @@ function Counter(props) {
     const {clientX, clientY} = e;
 
     setState({
+      ...state,
       x: clientX,
       y: clientY
     });
