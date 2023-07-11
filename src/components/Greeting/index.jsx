@@ -1,51 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-class Greeting extends React.Component {
-  constructor(props) {
-    super(props);
+function Greeting(props) {
+  const [isRead, setIsRead] = useState(false);
 
-    this.state = {
-      isRead: false,
-    };
-  }
+  const {
+    user: { firstName, lastName, age, id },
+    makeFavorite,
+    deleteUser,
+  } = props;
 
-  render() {
-    const {
-      user: { firstName, lastName, age, id },
-      makeFavorite,
-      deleteUser,
-    } = this.props;
-    const { isRead } = this.state;
+  const handleClick = (e) => {
+    setIsRead(true);
+  };
 
-    // const readStatusText = isRead ? 'read' : 'not read';
+  const readParagraph = isRead ? <ReadMessage /> : <NotReadMessage />;
 
-    const handleClick = (e) => {
-      // this.state.isRead = true; неправильно
-      const stateChanges = {
-        isRead: true,
-      };
-      this.setState(stateChanges);
-    };
-
-    const readParagraph = isRead ? <ReadMessage /> : <NotReadMessage />;
-
-    return (
-      <li>
-        <article>
-          <h2>
-            Hello {firstName} {lastName} with age {age}!
-          </h2>
-          {/* <p>Message is {readStatusText}</p> */}
-          {readParagraph}
-          {/* {isRead ? null : <button onClick={handleClick}>Read greeting</button>} */}
-          {!isRead && <button onClick={handleClick}>Read greeting</button>}
-          <button onClick={() => makeFavorite(id)}>Make favorite</button>
-          <button onClick={() => deleteUser(id)}>Delete</button>
-        </article>
-      </li>
-    );
-  }
+  return (
+    <li>
+      <article>
+        <h2>
+          Hello {firstName} {lastName} with age {age}!
+        </h2>
+        {/* <p>Message is {readStatusText}</p> */}
+        {readParagraph}
+        {/* {isRead ? null : <button onClick={handleClick}>Read greeting</button>} */}
+        {!isRead && <button onClick={handleClick}>Read greeting</button>}
+        <button onClick={() => makeFavorite(id)}>Make favorite</button>
+        <button onClick={() => deleteUser(id)}>Delete</button>
+      </article>
+    </li>
+  );
 }
 
 // const userObjectProp = PropTypes.shape({
