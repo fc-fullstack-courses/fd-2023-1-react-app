@@ -3,24 +3,20 @@ import classNames from 'classnames';
 import styles from './Counter.module.scss';
 
 function Counter(props) {
-  const [state, setState] = useState({
-    count: 0,
+  const [count, setCount] = useState(0);
+  const [coords, setCoords] = useState({
     x: 0,
     y: 0
   });
 
   const handleClick = () => {
-    setState({
-      ...state,
-      count: state.count + 1,
-    });
+    setCount(count + 1);
   };
 
   const handleMouseMove = (e) => {
     const {clientX, clientY} = e;
 
-    setState({
-      ...state,
+    setCoords({
       x: clientX,
       y: clientY
     });
@@ -28,9 +24,9 @@ function Counter(props) {
 
   return (
     <section onMouseMove={handleMouseMove} className={styles.container}>
-      <p>Count is {state.count}</p>
-      <p>X is {state.x}</p>
-      <p>Y is {state.y}</p>
+      <p>Count is {count}</p>
+      <p>X is {coords.x}</p>
+      <p>Y is {coords.y}</p>
       <button onClick={handleClick}>Add 1</button>
     </section>
   );
