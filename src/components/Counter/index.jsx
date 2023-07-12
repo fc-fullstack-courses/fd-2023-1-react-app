@@ -19,7 +19,7 @@ function Counter(props) {
       console.log('clearEffects');
       document.removeEventListener('mousemove', handleMouseMove);
     };
-  });
+  }, []);
 
   const handleClick = () => {
     console.log('increment');
