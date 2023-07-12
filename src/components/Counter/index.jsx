@@ -10,33 +10,41 @@ function Counter(props) {
     y: 0,
   });
 
-  useEffect(function createEffects() {
+  useEffect(
+    function createEffects() {
+      // createEffects = componentDidMount + componentDidUpdate
+      console.log('createEffects');
+      document.addEventListener('click', handleClick);
+      // clearEffects ~= componentWillUnmount + также запускается при каждой отрисовке компонента перед createEffects
+      return function clearEffects() {
+        console.log('clearEffects');
+        document.removeEventListener('click', handleClick);
+      };
+    },
+    [count]
+  );
 
-
-    // createEffects = componentDidMount + componentDidUpdate
-    console.log('createEffects');
-    document.addEventListener('click', handleClick);
-    // clearEffects ~= componentWillUnmount + также запускается при каждой отрисовке компонента перед createEffects
-    return function clearEffects() {
-      console.log('clearEffects');
-      document.removeEventListener('click', handleClick);
+  useEffect(() => {
+    document.addEventListener('mousemove', handleMouseMove);
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
     };
-  }, [count]);
+  },[]);
 
-    function handleClick() {
-      console.log(`count is ${count}`);
-      console.log(`next count is ${count + 1}`)
-      setCount(count + 1);
-    }
+  function handleClick() {
+    console.log(`count is ${count}`);
+    console.log(`next count is ${count + 1}`);
+    setCount(count + 1);
+  }
 
-    // function handleClick() {
-    //   setCount((count) => {
-    //     console.log(`count is ${count}`);
-    //     console.log(`next count is ${count + 1}`);
-  
-    //     return count + 1;
-    //   });
-    // }
+  // function handleClick() {
+  //   setCount((count) => {
+  //     console.log(`count is ${count}`);
+  //     console.log(`next count is ${count + 1}`);
+
+  //     return count + 1;
+  //   });
+  // }
 
   const startAutoClicks = () => {
     if (!intervalId) {
