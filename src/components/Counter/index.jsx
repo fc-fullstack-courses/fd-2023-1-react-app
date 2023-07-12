@@ -11,22 +11,32 @@ function Counter(props) {
   });
 
   useEffect(function createEffects() {
+
+
     // createEffects = componentDidMount + componentDidUpdate
     console.log('createEffects');
-    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('click', handleClick);
     // clearEffects ~= componentWillUnmount + также запускается при каждой отрисовке компонента перед createEffects
     return function clearEffects() {
       console.log('clearEffects');
-      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('click', handleClick);
     };
-  }, []);
+  }, [count]);
 
-  const handleClick = () => {
-    console.log('increment');
-    setCount((currentCount) => {
-      return currentCount + 1;
-    });
-  };
+    function handleClick() {
+      console.log(`count is ${count}`);
+      console.log(`next count is ${count + 1}`)
+      setCount(count + 1);
+    }
+
+    // function handleClick() {
+    //   setCount((count) => {
+    //     console.log(`count is ${count}`);
+    //     console.log(`next count is ${count + 1}`);
+  
+    //     return count + 1;
+    //   });
+    // }
 
   const startAutoClicks = () => {
     if (!intervalId) {
@@ -58,7 +68,7 @@ function Counter(props) {
       <p>Count is {count}</p>
       <p>X is {coords.x}</p>
       <p>Y is {coords.y}</p>
-      <button onClick={handleClick}>Add 1</button>
+      <button>Add 1</button>
       <button onClick={startAutoClicks}>Start autoclicks</button>
       <button onClick={stopAutoClicks}>Stop autoclicks</button>
     </section>
