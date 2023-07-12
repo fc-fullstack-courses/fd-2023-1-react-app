@@ -13,10 +13,11 @@ function Counter(props) {
   useEffect(function createEffects() {
     // createEffects = componentDidMount + componentDidUpdate
     console.log('createEffects');
-
+    document.addEventListener('mousemove', handleMouseMove);
     // clearEffects ~= componentWillUnmount + также запускается при каждой отрисовке компонента перед createEffects
     return function clearEffects() {
       console.log('clearEffects');
+      document.removeEventListener('mousemove', handleMouseMove);
     };
   });
 
@@ -43,17 +44,17 @@ function Counter(props) {
     });
   };
 
-  const handleMouseMove = (e) => {
+  function handleMouseMove(e) {
     const { clientX, clientY } = e;
 
     setCoords({
       x: clientX,
       y: clientY,
     });
-  };
+  }
 
   return (
-    <section onMouseMove={handleMouseMove} className={styles.container}>
+    <section className={styles.container}>
       <p>Count is {count}</p>
       <p>X is {coords.x}</p>
       <p>Y is {coords.y}</p>
