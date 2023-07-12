@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import classNames from 'classnames';
-import { withTheme, withUser } from '../../HOCs';
+import { UserContext, ThemeContext } from '../../contexts';
 import styles from './Sidebar.module.scss';
 import CONSTANTS from '../../constants';
 const { THEMES } = CONSTANTS;
 
 const Sidebar = (props) => {
-  const { theme, switchTheme, user } = props;
+  const user = useContext(UserContext);
+  const [theme, switchTheme] = useContext(ThemeContext);
 
   const className = classNames({
     [styles.lightTheme]: theme === THEMES.LIGHT_THEME,
@@ -41,9 +42,9 @@ const Sidebar = (props) => {
   );
 };
 
-const SidebarWithAll = withTheme(withUser(Sidebar));
+// const SidebarWithAll = withTheme(withUser(Sidebar));
 
-export default SidebarWithAll;
+export default Sidebar;
 
 // rafce
 // rcce

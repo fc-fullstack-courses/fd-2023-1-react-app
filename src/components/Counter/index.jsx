@@ -10,6 +10,17 @@ function Counter(props) {
     y: 0,
   });
 
+  // неправильно!
+  // if (Math.random() > 0.6) {
+  //   useEffect();
+  // }
+
+  // правильно
+  useEffect(() => {
+    if (Math.random() > 0.6) {
+    }
+  });
+
   useEffect(
     function createEffects() {
       // createEffects = componentDidMount + componentDidUpdate
@@ -29,7 +40,7 @@ function Counter(props) {
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
     };
-  },[]);
+  }, []);
 
   function handleClick() {
     console.log(`count is ${count}`);
@@ -81,6 +92,18 @@ function Counter(props) {
       <button onClick={stopAutoClicks}>Stop autoclicks</button>
     </section>
   );
+}
+
+// плохо
+function test() {
+  // const [value, setValue] = useState();
+}
+
+// нормально
+function Test(props) {
+  const [value, setValue] = useState();
+
+  return <div></div>;
 }
 
 export default Counter;
