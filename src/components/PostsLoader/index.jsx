@@ -1,51 +1,41 @@
-import { Component } from 'react';
+import { useEffect, useState } from 'react';
 import { getPosts } from '../../api';
 
-class PostsLoader extends Component {
-  constructor(props) {
-    super(props);
+function PostsLoader(props) {
+  const [posts, setPosts] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-    this.state = {
-      posts: [],
-      isLoading: false,
-      error: null,
-    };
-  }
-
-  componentDidMount() {
-    this.setState({ isLoading: true });
+  useEffect(() => {
+    setIsLoading(true);
 
     getPosts()
       .then((posts) => {
         // console.log(posts);
-        this.setState({ posts });
+        setPosts(posts);
       })
       .catch((error) => {
-        this.setState({ error });
+        setError(error);
       })
       .finally(() => {
-        this.setState({ isLoading: false });
+        setIsLoading(false);
       });
-  }
+  }, []);
 
-  render() {
-    const { posts, isLoading, error } = this.state;
+  const postsCards = posts.map((post) => (
+    <article key={post.id}>
+      <h2>{post.title}</h2>
+      <p>{post.body}</p>
+    </article>
+  ));
 
-    const postsCards = posts.map((post) => (
-      <article key={post.id}>
-        <h2>{post.title}</h2>
-        <p>{post.body}</p>
-      </article>
-    ));
-
-    return (
-      <div>
-        {isLoading && <div>LOADING ... </div>}
-        {error && <div>ERROR LOADING POSTS</div>}
-        {postsCards}
-      </div>
-    );
-  }
+  return (
+    <div>
+      {isLoading && <div>LOADING ... </div>}
+      {error && <div>ERROR LOADING POSTS</div>}
+      {postsCards}
+    </div>
+  );
 }
 
 export default PostsLoader;
