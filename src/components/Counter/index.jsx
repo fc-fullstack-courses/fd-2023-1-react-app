@@ -12,6 +12,7 @@ function Counter(props) {
     y: 0,
   });
   const elemRef = useRef(null);
+  const renders = useRef(1);
   const { clicks: count, handleClick } = useClicker(elemRef);
 
   // неправильно!
@@ -23,6 +24,10 @@ function Counter(props) {
   useEffect(() => {
     if (Math.random() > 0.6) {
     }
+  });
+
+  useEffect(() => {
+    renders.current = renders.current + 1;
   });
 
   // useEffect(() => {
@@ -89,6 +94,7 @@ function Counter(props) {
       <p>Count is {count}</p>
       <p>X is {coords.x}</p>
       <p>Y is {coords.y}</p>
+      <p>There was {renders.current} renders</p>
       <button>Add 1</button>
       <button onClick={startAutoClicks}>Start autoclicks</button>
       <button onClick={stopAutoClicks}>Stop autoclicks</button>
