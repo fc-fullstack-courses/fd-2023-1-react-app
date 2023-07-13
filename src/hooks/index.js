@@ -23,16 +23,17 @@ export function useData(getData) {
   return { data, isLoading, error };
 }
 
-export function useClicker() {
+export function useClicker(elemRef) {
   const [clicks, setClicks] = useState(0);
 
   useEffect(() => {
-    document.addEventListener('click', handleClick);
+    const elem = elemRef.current;
+    elem.addEventListener('click', handleClick);
 
     return () => {
-      document.removeEventListener('click', handleClick);
+      elem.removeEventListener('click', handleClick);
     };
-  }, []);
+  }, [elemRef]);
 
   function handleClick() {
     setClicks((oldClicks) => oldClicks + 1);

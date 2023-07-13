@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import classNames from 'classnames';
 import styles from './Counter.module.scss';
 import { useClicker } from '../../hooks';
@@ -6,12 +6,13 @@ import { useClicker } from '../../hooks';
 // сделать пользовательский хук который будет считать клики по страничке
 
 function Counter(props) {
-  const { clicks: count, handleClick } = useClicker();
   const [intervalId, setIntervalId] = useState(null);
   const [coords, setCoords] = useState({
     x: 0,
     y: 0,
   });
+  const elemRef = useRef(null);
+  const { clicks: count, handleClick } = useClicker(elemRef);
 
   // неправильно!
   // if (Math.random() > 0.6) {
@@ -23,6 +24,10 @@ function Counter(props) {
     if (Math.random() > 0.6) {
     }
   });
+
+  // useEffect(() => {
+  //   console.log(elemRef.current);
+  // });
 
   // useEffect(
   //   function createEffects() {
@@ -80,7 +85,7 @@ function Counter(props) {
   }
 
   return (
-    <section className={styles.container}>
+    <section ref={elemRef} className={styles.container}>
       <p>Count is {count}</p>
       <p>X is {coords.x}</p>
       <p>Y is {coords.y}</p>
