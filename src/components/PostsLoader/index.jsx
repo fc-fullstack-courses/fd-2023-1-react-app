@@ -1,26 +1,9 @@
 import { useEffect, useState } from 'react';
 import { getPosts } from '../../api';
+import { useData } from '../../hooks';
 
 function PostsLoader(props) {
-  const [posts, setPosts] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    setIsLoading(true);
-
-    getPosts()
-      .then((posts) => {
-        // console.log(posts);
-        setPosts(posts);
-      })
-      .catch((error) => {
-        setError(error);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, []);
+  const { data: posts, isLoading, error } = useData(getPosts);
 
   const postsCards = posts.map((post) => (
     <article key={post.id}>
