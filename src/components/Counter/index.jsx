@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
 import styles from './Counter.module.scss';
+import { useClicker } from '../../hooks';
+
+// сделать пользовательский хук который будет считать клики по страничке
 
 function Counter(props) {
-  const [count, setCount] = useState(0);
+  const { clicks: count, handleClick } = useClicker();
   const [intervalId, setIntervalId] = useState(null);
   const [coords, setCoords] = useState({
     x: 0,
@@ -21,19 +24,19 @@ function Counter(props) {
     }
   });
 
-  useEffect(
-    function createEffects() {
-      // createEffects = componentDidMount + componentDidUpdate
-      console.log('createEffects');
-      document.addEventListener('click', handleClick);
-      // clearEffects ~= componentWillUnmount + также запускается при каждой отрисовке компонента перед createEffects
-      return function clearEffects() {
-        console.log('clearEffects');
-        document.removeEventListener('click', handleClick);
-      };
-    },
-    [count]
-  );
+  // useEffect(
+  //   function createEffects() {
+  //     // createEffects = componentDidMount + componentDidUpdate
+  //     console.log('createEffects');
+  //     document.addEventListener('click', handleClick);
+  //     // clearEffects ~= componentWillUnmount + также запускается при каждой отрисовке компонента перед createEffects
+  //     return function clearEffects() {
+  //       console.log('clearEffects');
+  //       document.removeEventListener('click', handleClick);
+  //     };
+  //   },
+  //   [count]
+  // );
 
   useEffect(() => {
     document.addEventListener('mousemove', handleMouseMove);
@@ -41,12 +44,6 @@ function Counter(props) {
       document.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
-
-  function handleClick() {
-    console.log(`count is ${count}`);
-    console.log(`next count is ${count + 1}`);
-    setCount(count + 1);
-  }
 
   // function handleClick() {
   //   setCount((count) => {

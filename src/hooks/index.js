@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 export function useData(getData) {
   const [data, setData] = useState([]);
@@ -21,4 +21,22 @@ export function useData(getData) {
   }, []);
 
   return { data, isLoading, error };
+}
+
+export function useClicker() {
+  const [clicks, setClicks] = useState(0);
+
+  useEffect(() => {
+    document.addEventListener('click', handleClick);
+
+    return () => {
+      document.removeEventListener('click', handleClick);
+    };
+  }, []);
+
+  function handleClick() {
+    setClicks((oldClicks) => oldClicks + 1);
+  }
+
+  return { clicks, handleClick };
 }
