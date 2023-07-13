@@ -12,6 +12,9 @@ const Header = () => {
           <li>
             <Link to='/hooks'>To hook example page</Link>
           </li>
+          <li>
+            <Link to='/posts'>To posts</Link>
+          </li>
         </ul>
       </nav>
     </header>
