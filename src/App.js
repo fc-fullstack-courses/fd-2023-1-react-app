@@ -7,6 +7,7 @@ import CONSTANTS from './constants';
 import HomePage from './pages/HomePage';
 import HooksPage from './pages/HooksPage';
 import PostsPage from './pages/PostsPage';
+import SignUpPage from './pages/SignUpPage';
 
 const { THEMES } = CONSTANTS;
 
@@ -59,6 +60,7 @@ class App extends React.Component {
               <Route path='/profile' component={ProfilePage} /> */}
               <Route path='/hooks' component={HooksPage} />
               <Route path='/posts' component={PostsPage} />
+              <Route path='/signup' component={SignUpPage} />
 
               <Route path='*' component={NotFoundPage} />
             </Switch>

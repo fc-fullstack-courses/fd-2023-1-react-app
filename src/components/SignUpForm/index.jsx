@@ -1,163 +1,34 @@
-import React from 'react';
-import styles from './SignUpForm.module.scss';
+import React, { useState } from 'react';
 
-// console.log(styles);
+const SignUpForm = (props) => {
+  const [login, setLogin] = useState('');
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
+  const [name, setName] = useState('');
 
-function signUp(userData) {
-  const { login, email, password } = userData;
-  // some logic
-
-  if ((!login, !email, !password)) {
-    throw new Error('invalid data');
+  function handleChange (e) {
+    const { target: {value, name}} = e;
   }
 
-  alert('user created!');
-}
-
-const initialState = {
-  login: '',
-  email: '',
-  password: '',
-  comment: '',
-  accountLevel: 'advanced',
-  isSubscribed: false,
-  gender: 'male',
+  return (
+    <form
+      style={{
+        display: 'flex',
+        flexDirection: 'column',
+        maxWidth: '400px',
+        padding: '20px',
+      }}
+    >
+      <input type='text' name='login' placeholder='login' value={login} onChange={handleChange} />
+      <input type='password' name='password' placeholder='password' />
+      <input type='email' name='email' placeholder='email' />
+      <input type='text' name='phone' placeholder='phone number' />
+      <input type='text' name='name' placeholder='name' />
+      <button>Submit</button>
+      <button>Reset</button>
+    </form>
+  );
 };
-
-class SignUpForm extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      ...initialState,
-    };
-  }
-
-  handleSubmit = (e) => {
-    e.preventDefault();
-    // console.log(e.target.elements.login.value);
-
-    // signUp();
-
-    this.setState({
-      ...initialState,
-    });
-  };
-
-  // handleLoginChange = (e) => {
-  //   const {
-  //     target: { value },
-  //   } = e;
-
-  //   this.setState({
-  //     login: value,
-  //   });
-  // };
-
-  handleChange = (e) => {
-    const {
-      target: { value, name, type, checked },
-    } = e;
-
-    const newValue = type === 'checkbox' ? checked : value;
-
-    this.setState({
-      [name]: newValue,
-    });
-  };
-
-  render() {
-    const {
-      login,
-      email,
-      password,
-      comment,
-      accountLevel,
-      isSubscribed,
-      gender,
-    } = this.state;
-
-    const btnStyles = {
-      color: email !== '' ? 'green' : 'red',
-    };
-
-    return (
-      <form onSubmit={this.handleSubmit} className={styles.container}>
-        <input
-          type='text'
-          name='login'
-          placeholder='login'
-          value={login}
-          onChange={this.handleChange}
-        />
-        <input
-          type='email'
-          name='email'
-          placeholder='email'
-          value={email}
-          onChange={this.handleChange}
-        />
-        <input
-          type='password'
-          name='password'
-          placeholder='password'
-          value={password}
-          onChange={this.handleChange}
-        />
-        <fieldset>
-          <legend>Choose your gender:</legend>
-          <label>
-            <input
-              type='radio'
-              name='gender'
-              value='male'
-              checked={gender === 'male'}
-              onChange={this.handleChange}
-            />
-            Male
-          </label>
-          <label>
-            <input
-              type='radio'
-              name='gender'
-              value='female'
-              checked={gender === 'female'}
-              onChange={this.handleChange}
-            />
-            Female
-          </label>
-        </fieldset>
-        <textarea
-          name='comment'
-          cols='30'
-          rows='10'
-          value={comment}
-          onChange={this.handleChange}
-        />
-        <select
-          name='accountLevel'
-          value={accountLevel}
-          onChange={this.handleChange}
-        >
-          <option value='basic'>basic level</option>
-          <option value='advanced'>advanced level</option>
-          <option value='admin'>admin level</option>
-        </select>
-        <label>
-          <input
-            type='checkbox'
-            name='isSubscribed'
-            checked={isSubscribed}
-            onChange={this.handleChange}
-          />
-          Subscribe to newsletter
-        </label>
-        <button style={btnStyles} type='submit' className={styles.btn}>
-          SignUp
-        </button>
-      </form>
-    );
-  }
-}
 
 export default SignUpForm;
