@@ -1,11 +1,11 @@
 import React, { useReducer } from 'react';
 
 function reducer(state, action) {
-  switch (action.name) {
+  switch (action.type) {
     case 'login': {
       const newState = {
         ...state,
-        login: action.value,
+        login: action.payload,
       };
 
       return newState;
@@ -13,7 +13,7 @@ function reducer(state, action) {
     case 'password': {
       const newState = {
         ...state,
-        password: action.value,
+        password: action.payload,
       };
 
       return newState;
@@ -21,7 +21,7 @@ function reducer(state, action) {
     case 'email': {
       const newState = {
         ...state,
-        email: action.value,
+        email: action.payload,
       };
 
       return newState;
@@ -29,7 +29,7 @@ function reducer(state, action) {
     case 'phone': {
       const newState = {
         ...state,
-        phone: action.value,
+        phone: action.payload,
       };
 
       return newState;
@@ -37,7 +37,7 @@ function reducer(state, action) {
     case 'name': {
       const newState = {
         ...state,
-        name: action.value,
+        name: action.payload,
       };
 
       return newState;
@@ -66,7 +66,7 @@ const SignUpForm = (props) => {
       target: { value, name },
     } = e;
 
-    const action = { name, value };
+    const action = { type: name, payload: value };
 
     dispatch(action);
   }
