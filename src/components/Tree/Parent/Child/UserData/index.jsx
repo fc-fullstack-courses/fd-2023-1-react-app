@@ -8,7 +8,7 @@ import React, {
   useMemo,
   useState,
 } from 'react';
-import { ThemeContext, UserContext } from '../../../../../contexts';
+import { ThemeContext, UserContext } from 'contexts';
 
 const { THEMES } = CONSTANTS;
 
