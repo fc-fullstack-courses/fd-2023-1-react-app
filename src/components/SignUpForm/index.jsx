@@ -7,6 +7,7 @@ const initialValues = {
   lastName: '',
   email: '',
   password: '',
+  accountLevel: 'basic',
 };
 
 const SignUpForm = (props) => {
@@ -30,6 +31,11 @@ const SignUpForm = (props) => {
         <Field type='text' name='lastName' placeholder='lastName' />
         <Field type='email' name='email' placeholder='email' />
         <Field type='password' name='password' placeholder='password' />
+        <Field as='select' name='accountLevel'>
+          <option value="basic">Basic</option>
+          <option value="advanced">Advanced</option>
+          <option value="Pro">Pro</option>
+        </Field>
         <button type='submit'>Submit</button>
         <button type='reset'>Reset</button>
       </Form>
