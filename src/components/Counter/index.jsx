@@ -118,12 +118,12 @@ export default Counter;
 
 const items = [1,2,3,4,5];
 
-// императивный цикл
-for(let i = 0; i < items.length; i++) {
-  console.log(items[i]);
-}
+// // императивный цикл
+// for(let i = 0; i < items.length; i++) {
+//   console.log(items[i]);
+// }
 
-// декларативный цикл
-for(const value of items) {
-  console.log(value);
-}
+// // декларативный цикл
+// for(const value of items) {
+//   console.log(value);
+// }
